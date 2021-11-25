@@ -45,20 +45,16 @@ func (s *KeyController) Set(w http.ResponseWriter, r *http.Request) {
 
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		if err != nil {
-			w.WriteHeader(http.StatusBadRequest)
-			_, _ = w.Write(s.RouteService.JsonResponse(nil, err))
-			return
-		}
+		w.WriteHeader(http.StatusBadRequest)
+		_, _ = w.Write(s.RouteService.JsonResponse(nil, err))
+		return
 	}
 
 	err = s.KeyService.Set(keyParam, body)
 	if err != nil {
-		if err != nil {
-			w.WriteHeader(http.StatusBadRequest)
-			_, _ = w.Write(s.RouteService.JsonResponse(nil, err))
-			return
-		}
+		w.WriteHeader(http.StatusBadRequest)
+		_, _ = w.Write(s.RouteService.JsonResponse(nil, err))
+		return
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -85,11 +81,9 @@ func (s *KeyController) Get(w http.ResponseWriter, r *http.Request) {
 
 	err, data := s.KeyService.Get(keyParam)
 	if err != nil {
-		if err != nil {
-			w.WriteHeader(http.StatusNotFound)
-			_, _ = w.Write(s.RouteService.JsonResponse(nil, err))
-			return
-		}
+		w.WriteHeader(http.StatusNotFound)
+		_, _ = w.Write(s.RouteService.JsonResponse(nil, err))
+		return
 	}
 
 	w.WriteHeader(http.StatusOK)
